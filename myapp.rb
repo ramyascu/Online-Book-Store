@@ -7,7 +7,7 @@ require 'sass'
 require 'dm-core'
 require 'dm-migrations'
 
-DataMapper.setup(:default, 'sqlite:///#{Dir.pwd}/students.db')
+DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/students.db")
 
 class Students
   include DataMapper::Resource
@@ -19,7 +19,7 @@ class Students
   property :phone, String
   property :grade, String
 end
-DataMapper.finalize
+# DataMapper.finalize
 DataMapper.auto_migrate!
 
 
