@@ -6,7 +6,7 @@ require 'sinatra'
 require 'sass'
 require 'data_mapper'
 
-DataMapper.setup(:default, 'sqlite://#{Dir.pwd}/students.db')
+DataMapper.setup(:default, 'sqlite:///#{Dir.pwd}/students.db')
 
 class Students
   include DataMapper::Resource
