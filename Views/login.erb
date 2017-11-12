@@ -1,0 +1,21 @@
+<% if @logged_out %>
+	<h1> You have successfully logged out. Please Login again </h1>
+<% else %>
+	<h1>Please logon</h1>
+<% end %>
+
+<form action="/login" method='post'>
+username: <input type='text' name='username'></input><br>
+password: <input type='password' name='password'></input>
+<br>
+<% if @failed_login %>
+	<p> Login Failed</p>
+<% end %>
+
+
+
+<input type='submit' name='submit'></input>
+</form>
+
+
+	
