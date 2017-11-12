@@ -4,7 +4,8 @@
 require 'pp'
 require 'sinatra'
 require 'sass'
-require 'data_mapper'
+require 'dm-core'
+require 'dm-migrations'
 
 DataMapper.setup(:default, 'sqlite:///#{Dir.pwd}/students.db')
 
