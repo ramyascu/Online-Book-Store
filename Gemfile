@@ -1,5 +1,5 @@
 source :rubygems
-ruby '2.3.4'
+ruby '2.4.2'
 gem "sinatra"
 gem "slim"
 gem "sass"
