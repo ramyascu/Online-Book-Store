@@ -1,0 +1,18 @@
+<form action="/comment" method="post">
+  <table style="width:100%">
+    <tr>
+      <th>Comment Title</th>
+      <th>Created At</th>
+    </tr>
+
+<% Comment.all.each do |x| %>
+  <tr>
+    <td><a href='/comment_view/<%= x[:unique_id] %>'><%= x[:comment_title] %></a></td>
+    <td><%= x[:created_at] %></td>
+
+<%end %>
+</table>
+
+<input type="submit" value="Create New Comment">
+
+</form>

@@ -1,1 +1,39 @@
-<% puts "Students " + session.to_s %>
+
+<form action="/students" method="post">
+  <table style="width:100%">
+    <tr>
+      <th>Student ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>   
+      <th>DoB</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Grade</th>
+    </tr>
+
+<% Student.all.each do |x| %>
+  <tr>
+    <td><%= x[:student_id] %></td>
+    <td><%= x[:firstname] %></td>
+    <td><%= x[:lastname] %></td>
+    <td><%= x[:birthday] %></td>
+    <td><%= x[:address] %></td>
+    <td><%= x[:phone] %></td>
+    <td><%= x[:grade] %></td>
+    <% if session[:admin] %>
+    <td><a href='/student_add_edit/<%= x[:unique_id] %>'>Edit</a></td>
+    <td><a href='/student_delete/<%= x[:unique_id] %>'>Delete</a></td>
+    <% end %>
+  </tr>
+  
+<% end %>
+</table>
+
+<% if session[:admin] %>
+<input type="submit" value="Add New Student">
+<% end %>
+
+</form>
+
+<%= Student.count %> Records
+

@@ -1,0 +1,13 @@
+
+<% c = Comment.get(@id) %>
+
+
+<table>
+	<tr><td>Comment Title</td><td><%= c[:comment_title] %></td></tr>
+	<tr><td>Created By</td><td><%= c[:created_by] %></td></tr>
+	<tr><td>Comment</td><td><%= c[:comment] %></td></tr>
+	<tr><td>Created At</td><td><%= c[:created_at] %></td></tr>
+	
+</table>
+
+<a href="<%= url('/comment')%>">Back to comment list</a>
