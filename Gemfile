@@ -8,7 +8,7 @@ gem "dm-migrations"
 gem "thin"
 gem "pg"
 gem "data_mapper"
-gem "dm-postgres-adapter"
+gem "dm-postgres-adapter", :group => :production
 gem "dm-timestamps"
 gem "dm-sqlite-adapter", :group => :development
 

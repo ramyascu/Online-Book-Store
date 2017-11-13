@@ -9,7 +9,7 @@ require 'dm-core'
 require 'dm-migrations'
 require 'dm-timestamps'
 
-DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/students.db")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite:///#{Dir.pwd}/students.db")
 
 class Student
   include DataMapper::Resource
