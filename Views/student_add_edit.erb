@@ -1,8 +1,22 @@
 
+<!-- We can get to this page by three means.
+
+(a) We are trying to edit a student record (first attempt)
+(b) We are trying to add a student record (first attempt)
+(c) We were trying to edit a student record previously, but submitted incorrect data (>1 attempt)
+(d) We were trying to create a new record, but submitted incorrect data (>1 attempt)
+
+If it is (c) or (d), we will have @old_values set to the form data from the unsuccessful edit/create attempt.
+We will also have a has @incorrect, which indicates the fields set incorrectly in the previous attempt
+
+If it is (b) or (d), then @new_record will be set to true
+
+If it is (a) or (c), then @new_record will be set to false, and @id will be the primary key
+-->
       
 <form action="/student_add_edit" method="post">
 <table>
-      <% pp @old_values %>
+	<!-- If it is not a new record (we are editing an entry), get the entry to edit via the primary key in @id-->
 	<% if not @new_record %>
 		<% record = Student.get(@id) %>
 	<% end %>
