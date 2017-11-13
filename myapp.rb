@@ -36,7 +36,7 @@ end
 
 # We have created all the data models, so we can finalize and auto_upgrade
 DataMapper.finalize
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
 # Configurations
 configure do
