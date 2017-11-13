@@ -2,17 +2,100 @@
       
 <form action="/student_add_edit" method="post">
 <table>
-
+      <% pp @old_values %>
 	<% if not @new_record %>
 		<% record = Student.get(@id) %>
 	<% end %>
-      <tr><td>Student Id</td><td><input name="student_id" type="number" size="10" <% if not @new_record %> value="<%= record[:student_id] %>" <% end %> >   </td></tr>
-      <tr><td>First Name</td><td><input name="firstname" type="text" size="10"<% if not @new_record %> value="<%= record[:firstname] %>" <% end %> ></td></tr>
-      <tr><td>Last Name</td><td><input name="lastname" type="text" size="10"<% if not @new_record %> value="<%= record[:lastname] %>" <% end %> ></td></tr>
-      <tr><td>Birthday</td><td><input name="birthday" type="date" size="10"<% if not @new_record %> value="<%= record[:birthday] %>" <% end %> ></td></tr>
-      <tr><td>Address</td><td><input name="address" type="text" size="10"<% if not @new_record %> value="<%= record[:address] %>" <% end %> ></td></tr>
-      <tr><td>Phone</td><td><input name="phone" type="text" size="10"<% if not @new_record %> value="<%= record[:phone] %>" <% end %> ></td></tr>
-      <tr><td>Grade</td><td><input name="grade" type="text" size="10"<% if not @new_record %> value="<%= record[:grade] %>" <% end %> ></td></tr>
+      <tr><td>Student Id*</td><td>
+                  <input name="student_id" type="number" size="10" 
+                        <% if defined? @incorrect %>
+                              value = "<%= @old_values[:student_id] %>"
+                        <% else %>
+                              <% if not @new_record %> value="<%= record[:student_id] %>" <% end %> 
+                        <% end %>
+                  >
+            </td> 
+
+            <%if (defined? @incorrect) and @incorrect.has_key?(:student_id) %> 
+                  <td> <%="(Required.Must be positive integer)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>First Name*</td><td>
+            <input name="firstname" type="text" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:firstname] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:firstname] %>" <% end %> 
+                  <% end %>
+            ></td>
+
+            <%if (defined? @incorrect) and @incorrect.has_key?(:firstname) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>Last Name*</td><td>
+            <input name="lastname" type="text" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:lastname] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:lastname] %>" <% end %> 
+                  <% end %>
+             ></td>
+
+            <%if (defined? @incorrect) and @incorrect.has_key?(:lastname) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>Birthday*</td><td>
+            <input name="birthday" type="date" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:birthday] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:birthday] %>" <% end %> 
+                  <% end %>
+            ></td>
+            <%if (defined? @incorrect) and @incorrect.has_key?(:birthday) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>Address*</td><td>
+            <input name="address" type="text" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:address] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:address] %>" <% end %> 
+                  <% end %>
+             ></td>
+
+            <%if (defined? @incorrect) and @incorrect.has_key?(:address) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>Phone</td><td>
+            <input name="phone" type="text" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:phone] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:phone] %>" <% end %> 
+                  <% end %>
+            ></td>
+            <%if (defined? @incorrect) and @incorrect.has_key?(:phone) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
+      <tr><td>Grade</td><td>
+            <input name="grade" type="text" size="10"
+                  <% if defined? @incorrect %>
+                        value = "<%= @old_values[:grade] %>"
+                  <% else %>
+                        <% if not @new_record %> value="<%= record[:grade] %>" <% end %> 
+                  <% end %>
+            ></td>
+
+            <%if (defined? @incorrect) and @incorrect.has_key?(:grade) %> 
+                  <td> <%="(Required.Please provide valid input)"%> </td>
+            <% end %>
+      </tr>
  </table>
  <input type="hidden" name="new_record" value="<%= @new_record %>">
  <% if not @new_record %><input type="hidden" name="unique_id" value="<%= record[:unique_id] %>"><%end%>

@@ -4,6 +4,7 @@
 <title><%= "Student Information System" %></title>
 </head>
 <body>
+<img src="<%= url('Website_Banner.png')%>" alt="Banner Image" width="100%"/>
 <h1>  Student Information System </h1>
 <% if (session.has_key? :admin) and session[:admin] == true %>
 <p align="right">Admin</p>

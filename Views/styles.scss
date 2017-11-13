@@ -1,9 +1,10 @@
 $red: #903;
 $black: #444;
 $white: #fff;
+$blue: #101FF5;
 $main-font: Helvetica, Arial, sans-serif;
 $htmlbgcolor: #ccc;
-$bodybgcolor: #dddcd9;
+$bodybgcolor: #F5F5F2;
 $ahovercolor: #637094;
 $headercolor: #a09b89;
 
@@ -22,8 +23,9 @@ body {
 
 
 h1 {
-  color: $red;
+  color: $blue;
   font: 32px/1 $main-font;
+  font-weight: bold;
 }
 
 header h1 {

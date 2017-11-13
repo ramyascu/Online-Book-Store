@@ -4,7 +4,7 @@
 require 'pp'
 require 'sinatra'
 require 'sass'
-require 'data_mapper'
+# require 'data_mapper'
 require 'dm-core'
 require 'dm-migrations'
 require 'dm-timestamps'
@@ -120,26 +120,63 @@ end
 
 post '/student_add_edit' do
   halt(401, 'Not Authorized') unless session[:admin]
-  if params[:new_record] == "true"
-    Student.create(:student_id => params[:student_id],
-                   :firstname => params[:firstname],
-                   :lastname => params[:lastname],
-                   :birthday => params[:birthday],
-                   :address => params[:address],
-                   :phone => params[:phone],
-                   :grade => params[:grade])
-  else
-    x = Student.get(params[:unique_id])
-    x[:student_id] = params[:student_id]
-    x[:firstname] = params[:firstname]
-    x[:lastname] = params[:lastname]
-    x[:birthday] = params[:birthday]
-    x[:address] = params[:address]
-    x[:phone] = params[:phone]
-    x[:grade] = params[:grade]
-    x.save
+  @incorrect = Hash.new
+  if params[:student_id].length == 0 || params[:student_id].to_i <= 0
+    @incorrect[:student_id] = true
   end
-  redirect to ('/students')
+  if not(/^[A-Za-z \'-']+$/.match(params[:firstname]))
+    @incorrect[:firstname] = true
+  end
+  if not (/^[A-Za-z \'-']+$/.match(params[:lastname]))
+    @incorrect[:lastname] = true
+  end
+  if params[:birthday].length == 0
+    @incorrect[:birthday] = true
+  end
+  if params[:address].length == 0
+    @incorrect[:address] = true
+  end
+
+  if not (/^[0-9+\-#()]+$/.match(params[:phone]))
+    @incorrect[:phone] = true
+  end
+
+  if not (/^[A-F]$/.match(params[:grade]))
+    @incorrect[:grade] = true
+  end
+
+  if @incorrect.length > 0
+    @old_values = params.clone
+    if params[:new_record] == "true"
+      @new_record = true
+    else
+      @id = params[:unique_id]
+      @new_record = false
+    end
+    erb :student_add_edit
+  else
+
+    if params[:new_record] == "true"
+      Student.create(:student_id => params[:student_id],
+       :firstname => params[:firstname],
+       :lastname => params[:lastname],
+       :birthday => params[:birthday],
+       :address => params[:address],
+       :phone => params[:phone],
+       :grade => params[:grade])
+    else
+      x = Student.get(params[:unique_id])
+      x[:student_id] = params[:student_id]
+      x[:firstname] = params[:firstname]
+      x[:lastname] = params[:lastname]
+      x[:birthday] = params[:birthday]
+      x[:address] = params[:address]
+      x[:phone] = params[:phone]
+      x[:grade] = params[:grade]
+      x.save
+    end
+    redirect to ('/students')
+  end
 end
 
 post '/students' do
@@ -161,8 +198,8 @@ end
 
 post '/comment_add' do
   Comment.create(:created_by => params[:created_by],
-                 :comment => params[:comment],
-                 :comment_title => params[:comment_title])
+   :comment => params[:comment],
+   :comment_title => params[:comment_title])
   redirect to ('/comment')
 end
 
