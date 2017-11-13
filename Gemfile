@@ -6,7 +6,7 @@ gem "sass"
 gem "dm-core"
 gem "dm-migrations"
 gem "thin"
-gem "pg", :group => :production
+gem "pg"
 gem "data_mapper"
 gem "dm-postgres-adapter"
 gem "dm-timestamps"
