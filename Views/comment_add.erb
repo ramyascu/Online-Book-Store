@@ -1,14 +1,18 @@
+
+<!-- form created to add in new comments. Note: we can also get here if we try to submit an incomplete/empty comment -->
 <form action="/comment_add" method="post">
 <table>
 	<tr><td>Comment Title*</td>
 		<td>
 		<input name="comment_title" type="text" size="10"
 		<% if defined? @incorrect %>
-            value = "<%= @old_values[:comment_title] %>"
+            value = "<%= @old_values[:comment_title] %>"  
         <% end %> >
+        <!-- variable @incorrect is defined because we tried to submit an invalid/empty comment title-->
 		<%if (defined? @incorrect) && @incorrect.has_key?(:comment_title) %> 
             <td> <%="(Please Enter!)"%> </td>
         <% end %>
+        <!-- if we enter an empty field, @incorrect will validate and alart user to enter data -->
         </td>
     </tr>
 
@@ -16,9 +20,11 @@
 		<% if defined? @incorrect %>
             value = "<%= @old_values[:created_by] %>"
         <% end %> >
+        <!-- variable @incorrect is defined because we tried to submit an invalid comment/empty author/createdby-->
 		<%if (defined? @incorrect) && @incorrect.has_key?(:created_by) %> 
             <td> <%="(Please Enter!)"%> </td>
         <% end %>
+        <!-- if we enter an empty field, @incorrect will validate and alart user to enter data -->
     </td></tr>
     
 	<tr><td>Comment*</td><td><textarea name="comment" type="text" size="20"
@@ -27,13 +33,16 @@
         <%else%>
         	></textarea>
         <% end %>
+        <!-- variable @incorrect is defined because we tried to submit an invalid/empty comment-->
 		<%if (defined? @incorrect) && @incorrect.has_key?(:comment) %> 
             <td> <%="(Please Enter!)"%> </td>
         <% end %>
+        <!-- if we enter an empty field, @incorrect will validate and alart user to enter data -->
        </td></tr>
 	
 
 </table>
 
+<!-- this action saves the comment in the database -->
 <input type="submit" value="Save">
 </form>

@@ -1,3 +1,6 @@
+
+
+<!-- Comment form created to show comment title and created at timestamp -->
 <form action="/comment" method="post">
   <table style="width:100%">
     <tr>
@@ -5,14 +8,16 @@
       <th>Created At</th>
     </tr>
 
+<!-- for each item in comment create a row in the table. -->
 <% Comment.all.each do |x| %>
   <tr>
+  <!-- below element genrates a link to view comment details -->
     <td><a href='/comment_view/<%= x[:unique_id] %>'><%= x[:comment_title] %></a></td>
     <td><%= x[:created_at] %></td>
 
 <%end %>
 </table>
-
+<!-- on click will redirect to a new route to create new comment -->
 <input type="submit" value="Create New Comment">
 
 </form>

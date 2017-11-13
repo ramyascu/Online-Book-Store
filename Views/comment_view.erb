@@ -1,7 +1,9 @@
 
+<!-- this page shows us the comment information. @id is the primary key refering to the comment and c is the comment object corresponding to the primary key -->
+
 <% c = Comment.get(@id) %>
 
-
+<!-- the comment view route shows the following fields -->
 <table>
 	<tr><td>Comment Title</td><td><%= c[:comment_title] %></td></tr>
 	<tr><td>Created By</td><td><%= c[:created_by] %></td></tr>
@@ -10,4 +12,5 @@
 	
 </table>
 
+<!-- link for back to the comment list -->
 <a href="<%= url('/comment')%>">Back to comment list</a>

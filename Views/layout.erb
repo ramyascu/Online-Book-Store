@@ -1,3 +1,6 @@
+
+
+<!-- This page is common for all the erb files-->
 <html>
 <head>
 <link href="<%= url('/styles.css')%>" rel="stylesheet" type="text/css">
@@ -5,6 +8,7 @@
 </head>
 <body>
 <img src="<%= url('Website_Banner.png')%>" alt="Banner Image" width="100%"/>
+<!-- if logged in display admin is logged in, else don't show anything -->
 <h1>  Student Information System </h1>
 <% if (session.has_key? :admin) and session[:admin] == true %>
 <p align="right">Admin</p>
@@ -26,6 +30,7 @@
 </ul>
 </nav>
 <br>
-<%= yield %>
+<!-- Yield will include data from the other erb files -->
+<%= yield %> 
 </body>
 </html>

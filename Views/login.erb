@@ -1,19 +1,23 @@
+
+<!-- login and logout feature -->
+
+<!-- User can get to this page by 3 ways: (1) if the user is logged out -->
 <% if @logged_out %>
 	<h1> You have successfully logged out. Please Login again </h1>
 <% else %>
 	<h1>Please logon</h1>
 <% end %>
-
+<!-- (2) If the user wants to login -->
 <form action="/login" method='post'>
 username: <input type='text' name='username'></input><br>
 password: <input type='password' name='password'></input>
 <br>
+<!-- (3) If the login has failed -->
 <% if @failed_login %>
 	<p> Login Failed</p>
 <% end %>
 
-
-
+<!-- Submit login info-->
 <input type='submit' name='submit'></input>
 </form>
 
