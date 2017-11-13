@@ -2,6 +2,7 @@ $red: #903;
 $black: #444;
 $white: #fff;
 $blue: #101FF5;
+$gray: #C0C0C0;
 $main-font: Helvetica, Arial, sans-serif;
 $htmlbgcolor: #ccc;
 $bodybgcolor: #F5F5F2;
@@ -62,6 +63,26 @@ nav {
   @include tabs ($background: $black, $color: $white);
   font-weight: bold;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+table{
+    border: 1px solid black;
+}
+
+th{
+  border-bottom: 1px solid black;
+  background-color: $gray;
+  text-align: left;
+  padding: 2px;
+}
+
+td{
+  padding: 2px;
+}
+
 
 p {
   font: 13px/1.4 $main-font;

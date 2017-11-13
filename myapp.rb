@@ -38,8 +38,8 @@ DataMapper.auto_upgrade!
 
 configure do
   use Rack::Session::Cookie, :secret => 'your_secret'
-  set :username, "yuan"
-  set :password, "newnew"
+  set :username, "Admin"
+  set :password, "COEN278"
   set :views, File.dirname(__FILE__) + "/Views"
   set :public_folder, File.dirname(__FILE__) + "/Public"
 
