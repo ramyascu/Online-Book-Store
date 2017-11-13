@@ -4,6 +4,7 @@
 require 'pp'
 require 'sinatra'
 require 'sass'
+require 'data_mapper'
 require 'dm-core'
 require 'dm-migrations'
 require 'dm-timestamps'
@@ -40,6 +41,15 @@ configure do
   set :username, "yuan"
   set :password, "newnew"
 end
+
+configure :development do
+    #setup sqlite database
+end
+
+configure :production do
+    #setup ENV[…]  database
+end
+
 
 get '/login' do
   @failed_login = false
