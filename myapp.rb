@@ -79,6 +79,10 @@ get '/logout' do
   erb :login
 end
 
+get '/' do
+  redirect to ('/home')
+end
+
 get '/styles.css' do
   scss :styles
 end
