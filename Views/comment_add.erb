@@ -1,8 +1,38 @@
 <form action="/comment_add" method="post">
 <table>
-	<tr><td>Comment Title</td><td><input name="comment_title" type="text" size="10"></td></tr>
-	<tr><td>Comment</td><td><textarea name="comment" type="text" size="20"></textarea></td></tr>
-	<tr><td>Created By</td><td><input name="created_by" type="text" size="15"></td></tr>
+	<tr><td>Comment Title*</td>
+		<td>
+		<input name="comment_title" type="text" size="10"
+		<% if defined? @incorrect %>
+            value = "<%= @old_values[:comment_title] %>"
+        <% end %> >
+		<%if (defined? @incorrect) && @incorrect.has_key?(:comment_title) %> 
+            <td> <%="(Please Enter!)"%> </td>
+        <% end %>
+        </td>
+    </tr>
+
+    <tr><td>Created By*</td><td><input name="created_by" type="text" size="10"
+		<% if defined? @incorrect %>
+            value = "<%= @old_values[:created_by] %>"
+        <% end %> >
+		<%if (defined? @incorrect) && @incorrect.has_key?(:created_by) %> 
+            <td> <%="(Please Enter!)"%> </td>
+        <% end %>
+    </td></tr>
+    
+	<tr><td>Comment*</td><td><textarea name="comment" type="text" size="20"
+		<% if defined? @incorrect %>
+            ><%= @old_values[:comment] %></textarea>
+        <%else%>
+        	></textarea>
+        <% end %>
+		<%if (defined? @incorrect) && @incorrect.has_key?(:comment) %> 
+            <td> <%="(Please Enter!)"%> </td>
+        <% end %>
+       </td></tr>
+	
+
 </table>
 
 <input type="submit" value="Save">

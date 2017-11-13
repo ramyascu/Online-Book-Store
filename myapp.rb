@@ -197,10 +197,29 @@ end
 
 
 post '/comment_add' do
-  Comment.create(:created_by => params[:created_by],
-   :comment => params[:comment],
-   :comment_title => params[:comment_title])
-  redirect to ('/comment')
+  @incorrect = Hash.new
+  if params[:created_by].length == 0
+    @incorrect[:created_by] = true
+  end
+
+  if params[:comment].length == 0
+    @incorrect[:comment] = true
+  end
+
+  if params[:comment_title].length == 0
+    @incorrect[:comment_title] = true
+  end
+
+  if @incorrect.length > 0
+    @old_values = params.clone
+    erb :comment_add
+  else
+
+    Comment.create(:created_by => params[:created_by],
+    :comment => params[:comment],
+    :comment_title => params[:comment_title])
+    redirect to ('/comment')
+  end
 end
 
 get '/comment_view/:unique_id' do
